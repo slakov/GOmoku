@@ -42,15 +42,27 @@ func printBoard(b string) {
 
 }
 
+func xyToIndex(x, y int) int {
+	y = y - 1
+	x = x - 1
+	index := y*boardSize + x
+	return index
+}
+
 func main() {
 
 	fmt.Println("gomoku here")
 	initBoard()
 	printBoard(board)
 
-	var x int
-	//var y int
-
+	var x, y int
+	fmt.Print("Enter column:")
 	fmt.Scan(&x)
+	fmt.Print("Enter row:")
+	fmt.Scan(&y)
+	index := xyToIndex(x, y)
+	board = board[:index] + "X" + board[index+1:]
+
+	printBoard(board)
 
 }
