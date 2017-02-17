@@ -56,13 +56,30 @@ func main() {
 	printBoard(board)
 
 	var x, y int
-	fmt.Print("Enter column:")
-	fmt.Scan(&x)
-	fmt.Print("Enter row:")
-	fmt.Scan(&y)
-	index := xyToIndex(x, y)
-	board = board[:index] + "X" + board[index+1:]
+	var x_turn bool
+	x_turn = true
+	var gEnd bool = false
 
-	printBoard(board)
+	for gEnd == false {
 
+		fmt.Print("Enter column:")
+		fmt.Scan(&x)
+		fmt.Print("Enter row:")
+		fmt.Scan(&y)
+		index := xyToIndex(x, y)
+
+		if board[index] != 46 {
+			fmt.Println("illegal move")
+			continue
+		}
+
+		if x_turn {
+			board = board[:index] + "X" + board[index+1:]
+		} else {
+			board = board[:index] + "O" + board[index+1:]
+		}
+
+		x_turn = !x_turn
+		printBoard(board)
+	}
 }
