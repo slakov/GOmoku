@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-var boardSize int = 8
+var boardSize int = 9
 var boardArea int = boardSize * boardSize
 var board string
 
@@ -62,12 +62,21 @@ func main() {
 
 	for gEnd == false {
 
+		// Who's turn
+		if x_turn {
+			fmt.Println("X is aan de beurt..")
+		} else {
+			fmt.Println("O is aan de beurt..")
+		}
+
+		// Input move
 		fmt.Print("Enter column:")
 		fmt.Scan(&x)
 		fmt.Print("Enter row:")
 		fmt.Scan(&y)
 		index := xyToIndex(x, y)
 
+		// 46 is ASCII for dot
 		if board[index] != 46 {
 			fmt.Println("illegal move")
 			continue
@@ -81,5 +90,12 @@ func main() {
 
 		x_turn = !x_turn
 		printBoard(board)
+
+		// check board status
+		if gStatus() == 1 {
+		}
+		if gStatus() == 2 {
+		}
+
 	}
 }
